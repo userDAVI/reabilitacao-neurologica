@@ -1,0 +1,879 @@
+# PROMPT MESTRE — PLATAFORMA INTELIGENTE DE REABILITAÇÃO NEUROLÓGICA PARA PACIENTES COM LESÃO MEDULAR
+
+## 1. PAPEL E EQUIPE DE ESPECIALISTAS
+
+Atue como uma equipe multidisciplinar de especialistas composta por:
+
+- Médico fisiatra especializado em reabilitação neurológica e lesão medular.
+- Médico neurologista com experiência em neurofisiologia clínica.
+- Médico especialista em dor crônica e dor neuropática.
+- Fisioterapeuta neurofuncional especializado em lesão medular.
+- Especialista em estimulação elétrica funcional (Functional Electrical Stimulation — FES) e tecnologias de neuroreabilitação.
+- Terapeuta ocupacional especializado em independência funcional.
+- Especialista em avaliação biomecânica e análise do movimento humano.
+- Engenheiro biomédico especializado em tecnologias assistivas, sensores inerciais, dispositivos médicos e processamento de sinais fisiológicos.
+- Especialista em inteligência artificial aplicada à saúde, sistemas de apoio à decisão clínica e interoperabilidade de dados.
+- Especialista em telessaúde, telemedicina e telereabilitação.
+- Especialista em gamificação aplicada à reabilitação e Goal Attainment Scaling (GAS).
+- Especialista em gestão de serviços de saúde, implementação de protocolos clínicos e análise de indicadores.
+- Designer UX/UI sênior especializado em sistemas médicos, acessibilidade e visualização de dados.
+- Desenvolvedor full-stack sênior especializado em plataformas web para saúde.
+- Especialista em apresentação de projetos estratégicos para coordenadores, instituições de saúde e financiadores.
+
+Trabalhe integrando os conhecimentos desses especialistas.
+
+Não produza apenas um fluxograma ilustrativo. Desenvolva o conceito completo de um sistema de reabilitação inteligente, com processos clínicos, processos tecnológicos, ciclos de realimentação, indicadores, recursos de software, oportunidades de inovação tecnológica e apresentação executiva.
+
+O resultado deve ser cientificamente fundamentado, visualmente intuitivo, tecnicamente viável e adequado para apresentação institucional.
+
+---
+
+## 2. CONTEXTO E OBJETIVO
+
+Estamos propondo desenvolver um ECOSSISTEMA INTELIGENTE DE REABILITAÇÃO PARA PACIENTES COM LESÃO MEDULAR.
+
+O sistema receberá pacientes provenientes de duas principais portas de entrada:
+
+1. Rede pública de saúde: SUS, hospitais públicos, ambulatórios e unidades de referência.
+2. Rede privada de saúde: hospitais, clínicas, consultórios médicos, planos de saúde e encaminhamentos particulares.
+
+Independentemente da origem, o paciente deverá entrar em uma jornada estruturada de avaliação, diagnóstico, planejamento terapêutico, execução das intervenções, monitoramento, reavaliação e acompanhamento.
+
+O sistema terá como objetivos:
+
+- Reduzir sintomas como dor crônica e dor neuropática, quando clinicamente possível.
+- Melhorar mobilidade funcional e desempenho motor.
+- Preservar e desenvolver capacidades motoras residuais.
+- Melhorar controle postural, equilíbrio e transferências.
+- Aumentar independência funcional.
+- Promover condicionamento físico e prevenir complicações secundárias.
+- Melhorar participação nas atividades cotidianas.
+- Promover adesão e engajamento por meio de gamificação.
+- Melhorar qualidade de vida.
+- Apoiar o trabalho de profissionais de saúde por meio de IA.
+- Monitorar evolução clínica e funcional com dados objetivos.
+- Permitir acompanhamento remoto seguro.
+- Criar oportunidades de desenvolvimento de dispositivos e tecnologias próprias.
+
+A plataforma deverá medir os benefícios efetivamente alcançados, incluindo casos de manutenção funcional, ausência de resposta, intercorrências ou necessidade de mudança de estratégia.
+
+A proposta deve considerar pacientes com lesões medulares traumáticas e não traumáticas, completas e incompletas, em diferentes estágios clínicos, respeitando critérios individuais de elegibilidade e segurança.
+
+---
+
+## 3. PRINCÍPIO CENTRAL DO MODELO
+
+O sistema deve ser representado conceitualmente como:
+
+ENTRADAS → PROCESSAMENTO INTELIGENTE → SAÍDAS
+
+ENTRADAS:
+Pacientes de origem pública ou privada, encaminhamentos e dados clínicos iniciais.
+
+PROCESSAMENTO:
+Triagem, avaliação, diagnóstico, exames complementares, prontuário eletrônico, IA, planejamento terapêutico, metas GAS, intervenções, tecnologias de reabilitação, monitoramento e reavaliações.
+
+SAÍDAS:
+Resultados clínicos e funcionais mensuráveis, continuidade do cuidado, alta quando apropriada ou transição para manutenção e acompanhamento.
+
+O processamento NÃO deve ser apresentado como uma sequência exclusivamente linear.
+
+Dentro dele existirão múltiplos fluxos e ciclos de realimentação.
+
+Exemplos:
+
+- Resultado de exame → atualização do prontuário → nova análise pela IA → revisão clínica → ajuste terapêutico.
+- Sessão de fisioterapia → registro de desempenho → avaliação das metas GAS → adaptação do plano.
+- Monitoramento remoto → identificação de dificuldades → reavaliação → mudança na frequência das sessões.
+- Dados dos sensores → análise biomecânica → relatórios → decisão profissional → personalização do treinamento.
+- Evolução da dor → reavaliação clínica → intervenção específica → nova mensuração.
+- Meta atingida → definição de nova meta ou progressão funcional.
+
+Esses ciclos são elementos fundamentais e devem estar visualmente destacados.
+
+---
+
+## 4. ETAPA 1 — ENTRADA DO PACIENTE
+
+Desenvolva o fluxo de entrada contemplando:
+
+### Via pública
+- Encaminhamento do SUS.
+- Encaminhamento hospitalar.
+- Atendimento especializado.
+- Central de regulação quando pertinente.
+- Análise documental e critérios de acesso.
+
+### Via privada
+- Encaminhamento médico.
+- Atendimento particular.
+- Clínicas parceiras.
+- Convênios e operadoras.
+- Encaminhamento de centros especializados.
+
+As duas vias devem convergir para uma triagem padronizada.
+
+Inclua cadastro inicial, identificação do encaminhamento, disponibilidade de atendimento, orientação ao paciente e avaliação inicial de elegibilidade.
+
+Não estabeleça critérios excludentes arbitrários. Diferencie elegibilidade clínica, capacidade operacional do serviço e necessidade de encaminhamento para outro nível de cuidado.
+
+---
+
+## 5. ETAPA 2 — TRIAGEM E AVALIAÇÃO CLÍNICA INICIAL
+
+Desenvolva um protocolo estruturado contendo:
+
+- Identificação do paciente.
+- Histórico da lesão medular.
+- Etiologia e tempo desde a lesão.
+- Nível neurológico e gravidade.
+- Classificação ISNCSCI/AIS, quando realizada por profissional habilitado.
+- Condições clínicas associadas.
+- Histórico de cirurgias e tratamentos.
+- Medicamentos.
+- Histórico de reabilitação.
+- Dor, espasticidade, alterações sensitivas e motoras.
+- Limitações funcionais.
+- Necessidades de tecnologia assistiva.
+- Objetivos e prioridades declarados pelo paciente.
+- Contexto familiar, social e ambiental.
+- Riscos clínicos e contraindicações para intervenções específicas.
+
+Prever rastreamento e encaminhamento para avaliação de situações como disreflexia autonômica, hipotensão ortostática, lesões por pressão, tromboembolismo, fraturas, infecções e outras complicações pertinentes.
+
+A triagem deverá gerar uma avaliação inicial de prioridade e necessidade de atendimento por diferentes especialidades.
+
+O sistema pode sinalizar riscos, mas não deverá realizar diagnóstico ou autorização terapêutica de forma autônoma.
+
+---
+
+## 6. ETAPA 3 — PRONTUÁRIO ELETRÔNICO INTELIGENTE
+
+Criar o conceito de um prontuário eletrônico longitudinal alimentado por diferentes fontes:
+
+- Anamnese.
+- Exame físico.
+- Avaliações multiprofissionais.
+- Exames complementares.
+- Sessões terapêuticas.
+- Resultados de sensores.
+- Escalas clínicas e funcionais.
+- Relatos do paciente.
+- Dados de dispositivos de telereabilitação.
+- Eventos adversos.
+- Acompanhamento de metas GAS.
+
+A IA deverá apoiar:
+
+1. Organização e sumarização dos dados.
+2. Identificação de informações ausentes.
+3. Construção de uma linha do tempo clínica.
+4. Comparação entre avaliações.
+5. Identificação de possíveis padrões de evolução.
+6. Visualização de indicadores.
+7. Sugestão de hipóteses ou necessidades de avaliação adicional.
+8. Proposição de alternativas de metas e condutas para revisão profissional.
+9. Preparação de relatórios clínicos.
+10. Sinalização de possíveis inconsistências e riscos.
+
+Cada sugestão deverá indicar os dados utilizados, grau de confiança quando houver validação adequada, justificativa, limitações e necessidade de revisão por profissional habilitado.
+
+A IA nunca deverá substituir o diagnóstico ou a decisão clínica.
+
+Prever assinatura, histórico de alterações, auditoria e responsabilização profissional.
+
+---
+
+## 7. ETAPA 4 — EXAMES E AVALIAÇÃO MULTIDIMENSIONAL
+
+Criar uma biblioteca de exames e avaliações que possam ser solicitados conforme indicação clínica.
+
+### Avaliações neurofisiológicas
+- Eletroneuromiografia.
+- Estudos de condução nervosa.
+- Eletrodiagnóstico e avaliação de excitabilidade neuromuscular.
+- Potenciais evocados, quando indicados.
+- EEG, em situações que justifiquem sua utilização.
+
+### Avaliações do sono
+- Questionários validados.
+- Polissonografia, quando houver indicação clínica.
+- Avaliação de distúrbios respiratórios relacionados ao sono.
+
+### Avaliações biomecânicas
+- Amplitude de movimento.
+- Análise de movimento.
+- Cinemática articular.
+- Controle postural.
+- Equilíbrio.
+- Avaliação de transferências.
+- Análise de marcha quando aplicável.
+- Sensores inerciais vestíveis.
+- Eletromiografia de superfície.
+- Avaliação de desempenho em atividades funcionais.
+
+### Avaliações de dor
+- Escalas de intensidade.
+- Caracterização da dor neuropática e nociceptiva.
+- Impacto funcional da dor.
+- Interferência no sono e nas atividades diárias.
+
+### Avaliações funcionais
+- SCIM, quando apropriada.
+- ISNCSCI/AIS para classificação neurológica.
+- Escalas de espasticidade.
+- Avaliação de força e função muscular.
+- Testes de mobilidade e equilíbrio adequados ao nível funcional.
+- Instrumentos de qualidade de vida.
+- Avaliação de independência em atividades diárias.
+
+Não tratar todos os exames como obrigatórios.
+
+Para cada avaliação, indicar:
+
+- Objetivo.
+- Indicação clínica.
+- Profissional responsável.
+- Momento inicial recomendado, quando fundamentado.
+- Critério para repetição.
+- Tipo de resultado gerado.
+- Como os resultados alimentam o prontuário.
+- Como contribuem para a decisão terapêutica.
+- Limitações e considerações de segurança.
+
+Todos os resultados devem alimentar automaticamente ou por integração supervisionada a plataforma.
+
+---
+
+## 8. ETAPA 5 — PLANEJAMENTO TERAPÊUTICO COM IA E GAS
+
+Implementar um módulo de planejamento terapêutico individualizado.
+
+A equipe multidisciplinar deverá construir metas junto ao paciente, considerando capacidades, limitações e preferências.
+
+Utilizar Goal Attainment Scaling (GAS) com cinco níveis:
+
+- -2: resultado muito abaixo do esperado.
+- -1: resultado abaixo do esperado.
+- 0: resultado esperado.
+- +1: resultado acima do esperado.
+- +2: resultado muito acima do esperado.
+
+Prever definição explícita do estado basal e das regras de pontuação, reconhecendo as variações metodológicas de GAS.
+
+Cada meta deverá conter:
+
+- Identificador.
+- Objetivo funcional.
+- Situação basal.
+- Indicador objetivo de medida.
+- Cinco níveis GAS definidos previamente.
+- Prazo.
+- Profissional responsável.
+- Intervenções associadas.
+- Frequência planejada.
+- Critério de reavaliação.
+- Resultado observado.
+- Evidências utilizadas na pontuação.
+- Histórico de alterações.
+
+Desenvolver uma interface visual de acompanhamento de metas.
+
+Exemplos ilustrativos:
+
+- Redução de interferência da dor nas atividades.
+- Melhor controle de tronco.
+- Maior independência em transferências.
+- Melhor desempenho em tarefas funcionais.
+- Aumento de resistência para atividade física adaptada.
+- Melhor adesão ao plano domiciliar.
+
+A IA poderá sugerir metas com base nos dados clínicos, mas o profissional e o paciente devem aprová-las.
+
+Explicar como calcular e apresentar um escore GAS agregado, quando metodologicamente apropriado, sem transformar a escala em uma medida universal de recuperação neurológica.
+
+---
+
+## 9. ETAPA 6 — PROTOCOLOS DE REABILITAÇÃO
+
+Desenvolver uma biblioteca modular de intervenções terapêuticas, permitindo que diferentes pacientes tenham jornadas distintas.
+
+Incluir:
+
+### Fisioterapia neurofuncional
+- Treinamento de controle postural.
+- Fortalecimento e mobilidade.
+- Treinamento de transferências.
+- Treinamento de equilíbrio.
+- Treinamento de marcha, quando clinicamente possível.
+- Prevenção de complicações relacionadas à imobilidade.
+
+### Estimulação elétrica funcional
+- FES direcionada a objetivos funcionais.
+- FES-Cycling.
+- Aplicações associadas a tarefas motoras específicas.
+- Monitoramento da resposta à estimulação.
+- Avaliação periódica de elegibilidade, tolerância e segurança.
+
+### Reabilitação com tecnologias digitais
+- Jogos sérios.
+- Realidade virtual.
+- Sensores vestíveis.
+- Biofeedback.
+- Exercícios gamificados.
+- Monitoramento remoto de tarefas.
+
+### Abordagem multidisciplinar
+- Terapia ocupacional.
+- Tratamento da dor.
+- Educação em saúde.
+- Psicologia quando indicada.
+- Acompanhamento de sono e fadiga.
+- Outras intervenções conforme necessidade.
+
+Para cada intervenção, desenvolver:
+
+1. Finalidade.
+2. Perfil do paciente candidato.
+3. Critérios de inclusão e exclusão clínica.
+4. Riscos e contraindicações.
+5. Recursos humanos e materiais.
+6. Frequência e duração individualizáveis.
+7. Critérios de progressão.
+8. Critérios para suspensão ou interrupção.
+9. Indicadores de resposta.
+10. Critérios de reavaliação.
+
+Não apresentar parâmetros de eletroestimulação como prescrições universais.
+
+O sistema deve apoiar o planejamento, e não executar alterações automáticas de estimulação sem avaliação e controles de segurança apropriados.
+
+---
+
+## 10. ETAPA 7 — AGENDA TERAPÊUTICA PERSONALIZADA
+
+Criar um calendário semanal e mensal de intervenções.
+
+O paciente poderá participar de atividades diferentes em dias distintos.
+
+Exemplo exclusivamente demonstrativo:
+
+Segunda-feira:
+- Avaliação de fisioterapia.
+- Treinamento funcional.
+
+Terça-feira:
+- Sessão de FES-Cycling, se indicada.
+- Registro de desempenho.
+
+Quarta-feira:
+- Atividades supervisionadas ou domiciliares.
+- Telemonitoramento.
+
+Quinta-feira:
+- Fisioterapia neurofuncional.
+- Treinamento gamificado.
+
+Sexta-feira:
+- Reavaliação de indicadores selecionados.
+- Acompanhamento de metas e sintomas.
+
+O calendário deverá ser configurável.
+
+A frequência real deverá depender de prescrição, recursos disponíveis, tolerância, objetivos e reavaliação clínica.
+
+A interface deve mostrar:
+
+- Agenda.
+- Sessões realizadas.
+- Sessões pendentes.
+- Adesão.
+- Metas relacionadas.
+- Avaliações futuras.
+- Alertas clínicos.
+- Próxima reavaliação programada.
+
+---
+
+## 11. ETAPA 8 — GAMIFICAÇÃO E ENGAJAMENTO
+
+Criar um sistema de gamificação centrado no paciente.
+
+Utilizar:
+
+- Missões funcionais.
+- Objetivos semanais.
+- Progresso visual.
+- Conquistas por atividades realizadas.
+- Evolução de metas GAS.
+- Feedback de desempenho.
+- Histórico de conquistas.
+- Painel de evolução pessoal.
+
+O sistema deve evitar comparações competitivas injustas entre pacientes com níveis de lesão diferentes.
+
+As recompensas devem valorizar adesão, esforço, segurança e conquistas individualizadas, sem prometer recuperação.
+
+Desenvolver exemplos de minijogos de reabilitação que utilizem sensores inerciais, FES ou biofeedback, quando clinicamente apropriados.
+
+---
+
+## 12. ETAPA 9 — SISTEMA DE REALIMENTAÇÃO CONTÍNUA
+
+Esta é uma das partes mais importantes do projeto.
+
+Representar um sistema que aprende com os dados e permite que a equipe aperfeiçoe continuamente o tratamento.
+
+Criar explicitamente os seguintes ciclos:
+
+CICLO A — AVALIAÇÃO CLÍNICA
+Avaliação → registro → análise → decisão → nova avaliação.
+
+CICLO B — INTERVENÇÃO TERAPÊUTICA
+Sessão → medida de desempenho → comparação com metas → ajuste supervisionado → nova sessão.
+
+CICLO C — EXAMES
+Exame → integração dos resultados → comparação longitudinal → revisão profissional → nova conduta ou exame quando indicado.
+
+CICLO D — TELEREABILITAÇÃO
+Atividade domiciliar → registro remoto → avaliação de adesão e segurança → feedback → atualização do plano.
+
+CICLO E — METAS GAS
+Meta estabelecida → intervenção → medida → pontuação → manutenção, ajuste ou definição de nova meta.
+
+CICLO F — INTELIGÊNCIA ARTIFICIAL
+Novos dados → processamento → identificação de padrões → recomendação explicável → validação profissional → acompanhamento dos resultados.
+
+A IA deve ser tratada como sistema de apoio à decisão clínica, com supervisão humana e monitoramento de desempenho.
+
+Diferenciar claramente atualização dos dados do paciente de treinamento ou atualização de modelos de IA. Não realizar retreinamento automático em produção sem governança, validação e autorização.
+
+---
+
+## 13. ETAPA 10 — TECNOLOGIAS QUE PODERÃO SER DESENVOLVIDAS
+
+Apresentar oportunidades reais de pesquisa, desenvolvimento e inovação.
+
+### Tecnologia A — Sensores inerciais vestíveis
+Desenvolver módulos IMU para análise de movimento, postura, amplitude articular e desempenho funcional.
+
+Possíveis funcionalidades:
+- Aquisição sem fio.
+- Estimativa de orientação.
+- Medidas de movimentos.
+- Análise de tarefas.
+- Integração com modelos biomecânicos.
+- Monitoramento longitudinal.
+
+### Tecnologia B — Plataforma de FES-Cycling
+Sistema de ciclismo assistido por eletroestimulação funcional, com monitoramento de sessões e integração ao prontuário.
+
+Estudar:
+- Controle de estimulação.
+- Sincronização com o movimento.
+- Instrumentação de desempenho.
+- Integração com jogos e realidade virtual.
+- Supervisão clínica e segurança.
+
+### Tecnologia C — Telereabilitação
+Aplicativo ou plataforma web com:
+- Acompanhamento remoto.
+- Registro de exercícios.
+- Coleta de sintomas.
+- Teleconsultas por profissionais habilitados.
+- Comunicação com a equipe.
+- Alertas clínicos.
+- Visualização de metas GAS.
+
+### Tecnologia D — Jogos sérios
+Desenvolvimento de jogos interativos para motivação, biofeedback e treino de tarefas funcionais.
+
+### Tecnologia E — Inteligência artificial
+Módulos para:
+- Organização de prontuários.
+- Análise longitudinal.
+- Apoio à construção de metas.
+- Relatórios.
+- Identificação de padrões de evolução.
+- Apoio ao acompanhamento clínico.
+
+### Tecnologia F — Plataforma de integração biomédica
+Integração entre sensores, dispositivos, avaliações, softwares biomecânicos e prontuário por meio de interfaces padronizadas.
+
+Para cada tecnologia, apresentar:
+
+- Problema que resolve.
+- Benefício potencial para o paciente e para o serviço.
+- Tecnologia necessária.
+- Dados produzidos.
+- Ponto de integração na jornada.
+- Maturidade tecnológica (TRL).
+- Desafios de desenvolvimento.
+- Requisitos de validação.
+- Segurança.
+- Possíveis exigências regulatórias.
+- Priorização para desenvolvimento.
+
+Criar um roadmap de tecnologias dividido em curto, médio e longo prazo.
+
+---
+
+## 14. ETAPA 11 — DESFECHOS E SAÍDAS DO SISTEMA
+
+O sistema deverá apresentar resultados por diferentes dimensões:
+
+### Desfechos clínicos
+- Evolução da dor.
+- Espasticidade.
+- Sono e fadiga.
+- Complicações relevantes.
+
+### Desfechos funcionais
+- Independência funcional.
+- Mobilidade.
+- Controle postural.
+- Transferências.
+- Amplitude de movimento.
+- Desempenho motor específico.
+
+### Desfechos relacionados ao paciente
+- Qualidade de vida.
+- Participação.
+- Autonomia percebida.
+- Satisfação.
+- Atingimento das metas GAS.
+
+### Desfechos operacionais
+- Adesão.
+- Comparecimento.
+- Tempo até avaliação inicial.
+- Tempo até início do tratamento.
+- Utilização de recursos.
+- Frequência de reavaliações.
+- Continuidade do cuidado.
+
+O sistema não deverá pressupor que todo paciente terá melhora.
+
+Definir saídas possíveis:
+- Alta por conclusão de objetivos e critérios clínicos.
+- Transição para programa de manutenção.
+- Continuidade do programa.
+- Redirecionamento terapêutico.
+- Encaminhamento para outro serviço.
+
+Gerar um relatório final comparando o estado inicial com os resultados observados, com indicação de limitações e dados ausentes.
+
+---
+
+## 15. ETAPA 12 — PLATAFORMA WEB HTML
+
+Desenvolver uma aplicação web navegável, responsiva, visualmente sofisticada e intuitiva.
+
+A plataforma será inicialmente um protótipo demonstrativo, com dados fictícios e sem utilização clínica real.
+
+Não criar apenas uma landing page.
+
+Criar um software demonstrativo com múltiplas telas e navegação funcional.
+
+### Tela 1 — Visão geral do ecossistema
+Mostrar visualmente o caminho completo do paciente.
+
+A representação deverá conter:
+- Duas entradas.
+- Núcleo central de processamento.
+- Processos clínicos.
+- Camada de IA.
+- Tecnologias de suporte.
+- Ciclos de realimentação.
+- Saídas.
+
+Os blocos devem ser interativos.
+
+Ao clicar em qualquer etapa, apresentar descrição, profissionais responsáveis, entradas, processos, saídas e tecnologias relacionadas.
+
+### Tela 2 — Painel de gestão
+Mostrar:
+- Pacientes ativos.
+- Pacientes aguardando avaliação.
+- Pacientes por etapa.
+- Sessões realizadas.
+- Reavaliações pendentes.
+- Indicadores agregados.
+- Distribuição de pacientes por origem.
+- Evolução das metas GAS.
+
+### Tela 3 — Lista de pacientes
+Permitir:
+- Pesquisar.
+- Filtrar.
+- Selecionar.
+- Acessar prontuário.
+- Identificar etapa atual.
+
+### Tela 4 — Prontuário eletrônico
+Mostrar dados clínicos fictícios, histórico, documentos, avaliações, exames, intervenções e observações.
+
+### Tela 5 — IA clínica
+Criar uma área demonstrativa onde a IA:
+- Resume o histórico.
+- Identifica informações ausentes.
+- Exibe tendências observadas.
+- Sugere avaliações adicionais.
+- Propõe metas para revisão.
+
+Todas as sugestões devem indicar que são demonstrativas e exigem validação profissional.
+
+### Tela 6 — Exames e avaliações
+Mostrar:
+- Exames realizados.
+- Exames pendentes.
+- Resultados.
+- Gráficos.
+- Comparações temporais.
+
+### Tela 7 — Plano terapêutico
+Mostrar:
+- Objetivos.
+- Metas GAS.
+- Intervenções.
+- Responsáveis.
+- Frequências.
+- Critérios de reavaliação.
+
+Permitir simular a edição de metas com validação de campos.
+
+### Tela 8 — Agenda semanal
+Calendário visual com sessões por dia, tipo, horário e profissional.
+
+### Tela 9 — Gamificação
+Criar uma interface acessível de progresso individual.
+
+### Tela 10 — Telereabilitação
+Mostrar acompanhamento remoto, relatos de sintomas, tarefas domiciliares e dados de dispositivos.
+
+### Tela 11 — Tecnologias e pesquisa
+Representar cada dispositivo ou sistema em desenvolvimento e sua conexão com a jornada.
+
+### Tela 12 — Resultados e alta
+Comparar linha de base, avaliações intermediárias e desfechos finais, sem inventar benefícios clínicos reais.
+
+---
+
+## 16. DIRETRIZES DE UX/UI
+
+Utilizar design de plataforma hospitalar moderna.
+
+Características:
+- Visual clean, premium e profissional.
+- Paleta com azul clínico, branco, tons neutros e verde para resultados favoráveis.
+- Tipografia moderna.
+- Excelente hierarquia visual.
+- Navegação lateral simples.
+- Cards organizados.
+- Gráficos interativos.
+- Animações discretas.
+- Fluxogramas interativos.
+- Indicadores visuais.
+- Layout responsivo.
+- Contraste e acessibilidade.
+- Navegação por teclado.
+- Suporte a leitores de tela.
+- Identificação de informação por texto, não apenas por cores.
+- Compatibilidade com limitações motoras do público atendido.
+
+A jornada do paciente deve ser a principal experiência visual do sistema.
+
+O usuário deve compreender em poucos segundos:
+1. De onde o paciente vem.
+2. Em qual etapa está.
+3. Quais intervenções estão sendo realizadas.
+4. Quais dados estão sendo coletados.
+5. Como ocorrem as reavaliações.
+6. Qual evolução está sendo observada.
+7. Quais tecnologias apoiam o processo.
+
+Diferenciar visualmente:
+- Etapas clínicas.
+- Etapas tecnológicas.
+- Processamentos de IA.
+- Decisões profissionais.
+- Ciclos de retorno.
+- Desfechos.
+
+---
+
+## 17. ARQUITETURA DE SOFTWARE
+
+Projetar uma arquitetura modular.
+
+Sugestão tecnológica:
+- Frontend: HTML5, CSS3, TypeScript e React.
+- Diagramas: React Flow ou biblioteca equivalente.
+- Gráficos: Recharts ou biblioteca equivalente.
+- Backend futuro: Python/FastAPI.
+- Banco de dados futuro: PostgreSQL.
+- Integração clínica: padrões HL7 FHIR quando pertinentes.
+- Integração com dispositivos: APIs e protocolos adequados.
+- Serviços de IA isolados da camada de prontuário.
+- Controle de acesso por perfis profissionais.
+- Auditoria das operações.
+- Criptografia e proteção dos dados.
+
+Para o protótipo inicial, utilizar dados fictícios locais e simulações funcionais, sem depender de integrações externas.
+
+Separar claramente:
+- Funcionalidades implementadas.
+- Funcionalidades simuladas.
+- Funcionalidades propostas para produção.
+
+---
+
+## 18. SEGURANÇA, ÉTICA E REGULAÇÃO
+
+Considerar o contexto brasileiro:
+
+- LGPD.
+- Lei nº 14.510/2022.
+- Regras profissionais aplicáveis à telemedicina e telessaúde.
+- Requisitos de prontuário eletrônico.
+- Normas aplicáveis a dispositivos médicos.
+- Requisitos da Anvisa, quando pertinentes.
+- Ética em pesquisa envolvendo seres humanos.
+- Consentimento e informação ao paciente.
+- Segurança e rastreabilidade.
+- Segurança de dados e interoperabilidade.
+
+O sistema deverá ter supervisão profissional em decisões clínicas.
+
+Prever mecanismos de prevenção e resposta a eventos adversos, encaminhamento de situações urgentes, identificação de limitações dos dados e governança da IA.
+
+Não utilizar dados reais de pacientes no protótipo.
+
+Não apresentar a ferramenta como dispositivo médico validado ou sistema clínico aprovado.
+
+---
+
+## 19. APRESENTAÇÃO EXECUTIVA PARA COORDENADORES
+
+Além da plataforma HTML, produzir uma apresentação institucional com aproximadamente 15 slides.
+
+Estrutura sugerida:
+
+Slide 1 — Visão do projeto.
+Slide 2 — Problema clínico e oportunidade.
+Slide 3 — Objetivos e benefícios esperados.
+Slide 4 — Entradas pela rede pública e privada.
+Slide 5 — Visão macro da jornada do paciente.
+Slide 6 — Triagem e avaliação multidisciplinar.
+Slide 7 — Prontuário inteligente e exames.
+Slide 8 — Construção de metas GAS.
+Slide 9 — Intervenções e protocolos de reabilitação.
+Slide 10 — Ciclos de reavaliação e inteligência artificial.
+Slide 11 — Tecnologias desenvolvidas e oportunidades de inovação.
+Slide 12 — Telereabilitação e monitoramento remoto.
+Slide 13 — Indicadores de resultado e avaliação de impacto.
+Slide 14 — Roadmap de implementação, infraestrutura e equipe.
+Slide 15 — Proposta de projeto-piloto, recursos necessários e decisões solicitadas à coordenação.
+
+A apresentação deve ter caráter científico, tecnológico e estratégico.
+
+Evitar slides excessivamente textuais.
+
+Utilizar diagramas, linhas do tempo, dashboards, mapas de processos e ilustrações técnicas.
+
+Transmitir três mensagens principais:
+
+1. O paciente terá uma jornada de cuidado coordenada e individualizada.
+2. A reabilitação será monitorada por indicadores e continuamente reavaliada.
+3. O projeto poderá gerar novas tecnologias, conhecimento científico e soluções escaláveis para a rede pública e privada.
+
+Criar também uma versão de apresentação web em HTML, navegável em modo apresentação.
+
+Se o ambiente de desenvolvimento permitir, exportar a apresentação para PowerPoint (.pptx) e PDF.
+
+---
+
+## 20. ENTREGÁVEIS
+
+Criar os seguintes entregáveis:
+
+A. Documento de arquitetura conceitual do sistema.
+
+B. Mapa completo da jornada do paciente, com entradas, processos, decisões, retornos e saídas.
+
+C. Fluxograma clínico-operacional com responsáveis, dados e critérios.
+
+D. Protótipo HTML funcional e navegável da plataforma.
+
+E. Painel demonstrativo de prontuário, IA, avaliações, metas GAS, terapias e indicadores.
+
+F. Plano de desenvolvimento de tecnologias de reabilitação e telemedicina.
+
+G. Apresentação executiva de aproximadamente 15 slides.
+
+H. Roadmap de implementação da solução, separando MVP, piloto clínico supervisionado e plataforma futura.
+
+I. Matriz de riscos clínicos, tecnológicos, operacionais e regulatórios.
+
+J. Documento de premissas, questões que precisam de definição institucional e referências científicas.
+
+---
+
+## 21. CRITÉRIOS DE QUALIDADE
+
+O resultado deve:
+
+- Ter fundamento científico.
+- Diferenciar evidência consolidada de hipóteses de pesquisa.
+- Evitar promessas de recuperação neurológica.
+- Ser clinicamente coerente.
+- Demonstrar claramente a importância da equipe multiprofissional.
+- Evidenciar como a inteligência artificial apoia decisões.
+- Possuir ciclos de realimentação visíveis.
+- Demonstrar o papel das tecnologias desenvolvidas.
+- Permitir acompanhar pacientes individualmente.
+- Demonstrar indicadores agregados para gestores.
+- Ter uma experiência visual intuitiva.
+- Ser tecnicamente viável em etapas.
+- Possuir modularidade para novos exames, terapias e dispositivos.
+- Ser apresentável a coordenadores médicos, pesquisadores e gestores.
+
+Os fluxos devem demonstrar relações entre processos, não apenas apresentar uma lista de funcionalidades.
+
+---
+
+## 22. ORDEM DE EXECUÇÃO
+
+Execute o projeto nesta ordem:
+
+FASE 1 — Pesquisa e estruturação clínica:
+Definir a jornada, protocolos possíveis, responsabilidades, indicadores e fundamentação científica.
+
+FASE 2 — Modelagem de processos:
+Criar o fluxo macro e os ciclos de realimentação. Identificar pontos de decisão, alternativas e encerramentos.
+
+FASE 3 — Arquitetura tecnológica:
+Definir módulos, dados, integrações, dispositivos e possibilidades de evolução.
+
+FASE 4 — UX/UI:
+Definir design system, navegação, telas e interações.
+
+FASE 5 — Desenvolvimento:
+Implementar a aplicação HTML funcional, com dados fictícios e componentes reutilizáveis.
+
+FASE 6 — Validação demonstrativa:
+Testar navegação, fluxos, reavaliações, metas, visualizações, responsividade e acessibilidade.
+
+FASE 7 — Apresentação:
+Criar os slides e a versão HTML para apresentação aos coordenadores.
+
+FASE 8 — Revisão final:
+Verificar coerência clínica, segurança, consistência visual, referências, riscos e viabilidade.
+
+Priorize entregar arquivos funcionais e organizados, não apenas descrições.
+
+Caso alguma integração não possa ser implementada, simule-a claramente e documente o que faltará para sua utilização real.
+
+O resultado final deve ser uma proposta de um centro de reabilitação neurológica apoiado por uma plataforma inteligente e por tecnologias biomédicas integradas, capaz de acompanhar a jornada do paciente de forma longitudinal, multidisciplinar, mensurável e personalizada.
+
+**INICIE A EXECUÇÃO DO PROJETO.**

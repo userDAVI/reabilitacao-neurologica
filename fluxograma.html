@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Jornada de Reabilitação Medular</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: cabeçalho curto, fluxograma vertical em três faixas (chegada · percurso · saída) e painel de detalhes fixo ao lado */
+:root {
+  --bg: #f3f6fa;
+  --surface: #ffffff;
+  --band: #e7eef6;
+  --ink: #12233a;
+  --ink-2: #51647e;
+  --line: #cfdae7;
+  --flow: #5b6d86;
+  --clin: #1c6eea;
+  --clin-soft: #eaf2fe;
+  --entry: #3b5f8c;
+  --entry-soft: #dde7f3;
+  --decide: #9a5c00;
+  --decide-soft: #fff1d3;
+  --loop: #6a4fd6;
+  --loop-soft: #efebfd;
+  --good: #1d7444;
+  --good-soft: #def3e6;
+  --exit: #5a6779;
+  --exit-soft: #eaeef3;
+  --urgent: #c23b33;
+  --urgent-soft: #fde9e7;
+  --shadow: rgba(18, 35, 58, 0.18);
+  --font-text: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1522; --surface: #131f31; --band: #101b2b; --ink: #e5edf7; --ink-2: #9fb1c8;
+    --line: #283a52; --flow: #8fa2bb; --clin: #6aa5ff; --clin-soft: #15284a;
+    --entry: #8eaed6; --entry-soft: #172840; --decide: #f2b44e; --decide-soft: #33260f;
+    --loop: #a996ff; --loop-soft: #231c45; --good: #5ccf8e; --good-soft: #10301f;
+    --exit: #a7b3c4; --exit-soft: #1c2738; --urgent: #ff8078; --urgent-soft: #3a1918;
+    --shadow: rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1522; --surface: #131f31; --band: #101b2b; --ink: #e5edf7; --ink-2: #9fb1c8;
+  --line: #283a52; --flow: #8fa2bb; --clin: #6aa5ff; --clin-soft: #15284a;
+  --entry: #8eaed6; --entry-soft: #172840; --decide: #f2b44e; --decide-soft: #33260f;
+  --loop: #a996ff; --loop-soft: #231c45; --good: #5ccf8e; --good-soft: #10301f;
+  --exit: #a7b3c4; --exit-soft: #1c2738; --urgent: #ff8078; --urgent-soft: #3a1918;
+  --shadow: rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15px/1.55 var(--font-text);
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+
+/* Cabeçalho */
+.top { display: grid; gap: 10px; margin-bottom: 28px; max-width: 760px; }
+.eyebrow {
+  margin: 0;
+  font: 500 12px/1.2 var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+h1 {
+  margin: 0;
+  font: 700 clamp(28px, 4vw, 38px)/1.1 var(--font-text);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.lede { margin: 0; max-width: 62ch; font-size: 16px; color: var(--ink-2); }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend svg { width: 22px; height: 14px; flex: none; overflow: visible; }
+.lg-entry { fill: var(--entry-soft); stroke: var(--entry); stroke-width: 1.5; }
+.lg-step { fill: var(--surface); stroke: var(--clin); stroke-width: 1.5; }
+.lg-decide { fill: var(--decide-soft); stroke: var(--decide); stroke-width: 1.5; }
+.lg-loop { fill: none; stroke: var(--loop); stroke-width: 2; stroke-dasharray: 4 3; }
+.lg-good { fill: var(--good-soft); stroke: var(--good); stroke-width: 1.5; }
+.lg-exit { fill: var(--exit-soft); stroke: var(--exit); stroke-width: 1.5; }
+.lg-urgent { fill: var(--urgent-soft); stroke: var(--urgent); stroke-width: 1.5; }
+
+/* Layout principal */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 28px;
+  align-items: start;
+}
+.chart { margin: 0; min-width: 0; }
+.chart-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.swipe-hint { display: none; margin: 0 0 8px; font-size: 13px; color: var(--ink-2); }
+#flow {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  min-width: 620px;
+  height: auto;
+  margin: 0 auto;
+}
+figcaption {
+  max-width: 760px;
+  margin: 14px auto 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+/* Desenho */
+.band { fill: var(--band); }
+.t-band { font: 600 11px var(--font-mono); letter-spacing: 0.12em; fill: var(--ink); }
+.t-hint { font: 400 12px var(--font-text); fill: var(--ink-2); }
+.flow { fill: none; stroke: var(--flow); stroke-width: 1.6; stroke-linejoin: round; }
+.loop { fill: none; stroke: var(--loop); stroke-width: 1.6; stroke-dasharray: 6 5; stroke-linejoin: round; }
+.ah-flow { fill: var(--flow); }
+.ah-loop { fill: var(--loop); }
+.t-label { font: 500 11px var(--font-text); fill: var(--ink-2); }
+.t-label.t-loop { fill: var(--loop); }
+.group { fill: var(--clin-soft); stroke: var(--line); stroke-width: 1; }
+.n { cursor: pointer; outline: none; }
+.n text { user-select: none; -webkit-user-select: none; }
+.n .shape { fill: var(--surface); stroke: var(--clin); stroke-width: 1.5; transition: stroke-width 0.15s ease; }
+.n-entry .shape { fill: var(--entry-soft); stroke: var(--entry); }
+.n-decide .shape { fill: var(--decide-soft); stroke: var(--decide); }
+.n-loop .shape { fill: var(--surface); stroke: var(--loop); }
+.n-good .shape { fill: var(--good-soft); stroke: var(--good); }
+.n-exit .shape { fill: var(--exit-soft); stroke: var(--exit); }
+.n-urgent .shape { fill: var(--urgent-soft); stroke: var(--urgent); }
+.n:hover .shape { stroke-width: 2.5; }
+.n.is-active .shape { stroke-width: 3.5; }
+.n:focus-visible .shape { stroke: var(--ink); stroke-width: 3; }
+.t-title { font: 600 14px var(--font-text); fill: var(--ink); }
+.t-dec { font: 600 13px var(--font-text); fill: var(--ink); }
+.t-sub { font: 400 11.5px var(--font-text); fill: var(--ink-2); }
+.t-item { font: 400 12.5px var(--font-text); fill: var(--ink); }
+.t-mini { font: 400 11px var(--font-text); fill: var(--ink-2); }
+.t-badge { font: 600 11px var(--font-text); fill: var(--loop); }
+.t-note { font: 400 11px var(--font-text); fill: var(--ink-2); }
+.bullet { fill: var(--entry); }
+
+/* Painel */
+.panel {
+  position: sticky;
+  top: 24px;
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+#overview, #detail { padding: 22px 22px 24px; }
+.panel.is-detail #overview { display: none; }
+.panel h2 { margin: 0 0 8px; font: 700 20px/1.25 var(--font-text); text-wrap: balance; }
+.panel h2:focus { outline: none; }
+.panel h3 {
+  margin: 18px 0 6px;
+  font: 600 11px/1.3 var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.panel p { margin: 0; }
+.panel ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.panel li { font-size: 14px; }
+.lead { font-size: 15px; }
+.zones { display: grid; gap: 14px; margin-top: 14px; }
+.zone { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 2px 10px; }
+.zone-n {
+  grid-row: span 2;
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--band);
+  font: 600 12px var(--font-mono);
+  color: var(--ink);
+}
+.zone strong { font-size: 15px; }
+.zone p { font-size: 14px; color: var(--ink-2); }
+.stats {
+  margin-top: 16px !important;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font: 500 12px/1.6 var(--font-mono);
+  color: var(--ink-2);
+}
+.note { margin-top: 12px !important; font-size: 13px; color: var(--ink-2); }
+.d-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--bg);
+  font: 600 12px/1 var(--font-text);
+  color: var(--ink);
+}
+.dot { width: 9px; height: 9px; flex: none; border-radius: 50%; background: var(--k, var(--clin)); }
+.k-entry { --k: var(--entry); }
+.k-step { --k: var(--clin); }
+.k-decide { --k: var(--decide); }
+.k-loop { --k: var(--loop); }
+.k-good { --k: var(--good); }
+.k-exit { --k: var(--exit); }
+.k-urgent { --k: var(--urgent); }
+.back {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: none;
+  font: 500 13px var(--font-text);
+  color: var(--ink);
+  cursor: pointer;
+}
+.only-narrow { display: none; }
+.paths { display: grid; gap: 8px; }
+.paths button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  font: 500 14px/1.3 var(--font-text);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+.paths button:hover { border-color: var(--clin); }
+.end { margin-top: 18px !important; font-size: 14px; color: var(--ink-2); }
+button:focus-visible { outline: 2px solid var(--clin); outline-offset: 2px; }
+
+@media (max-width: 920px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .panel { position: static; max-height: none; overflow: visible; }
+  .panel.is-detail #overview { display: block; }
+  #detail {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 30;
+    max-height: 62vh;
+    overflow: auto;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -12px 32px var(--shadow);
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  .only-wide { display: none; }
+  .only-narrow { display: inline; }
+}
+@media (max-width: 660px) {
+  .swipe-hint { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .n .shape { transition: none; }
+}
+</style>
+
+<div class="page">
+  <header class="top">
+    <p class="eyebrow">Plataforma de reabilitação · Lesão medular</p>
+    <h1>Jornada do paciente</h1>
+    <p class="lede">De onde o paciente chega, por onde passa e por onde sai do programa. Clique em qualquer etapa para ver quem atua, o que acontece e para onde ela leva.</p>
+    <ul class="legend" aria-label="Legenda">
+      <li><svg viewBox="0 0 22 14" aria-hidden="true"><rect class="lg-entry" x="1" y="1" width="20" height="12" rx="3"/></svg>Chegada</li>
+      <li><svg viewBox="0 0 22 14" aria-hidden="true"><rect class="lg-step" x="1" y="1" width="20" height="12" rx="3"/></svg>Etapa</li>
+      <li><svg viewBox="0 0 22 14" aria-hidden="true"><path class="lg-decide" d="M11 1 L21 7 L11 13 L1 7 Z"/></svg>Decisão</li>
+      <li><svg viewBox="0 0 22 14" aria-hidden="true"><path class="lg-loop" d="M1 7 H21"/></svg>Ciclo de retorno</li>
+      <li><svg viewBox="0 0 22 14" aria-hidden="true"><rect class="lg-good" x="1" y="1" width="20" height="12" rx="6"/></svg>Alta ou manutenção</li>
+      <li><svg viewBox="0 0 22 14" aria-hidden="true"><rect class="lg-exit" x="1" y="1" width="20" height="12" rx="6"/></svg>Encaminhamento</li>
+      <li><svg viewBox="0 0 22 14" aria-hidden="true"><rect class="lg-urgent" x="1" y="1" width="20" height="12" rx="6"/></svg>Urgência</li>
+    </ul>
+  </header>
+
+  <main class="layout">
+    <figure class="chart">
+      <p class="swipe-hint">Arraste para os lados para ver o fluxograma inteiro.</p>
+      <div class="chart-scroll">
+        <svg id="flow" viewBox="0 0 760 1360" role="group" aria-label="Fluxograma da jornada do paciente. Chegada pela rede pública ou privada, que se juntam no acolhimento. Percurso: triagem, exames, plano com metas GAS, intervenções no centro e em casa, reavaliação e decisão, com três ciclos de retorno. Saída por alta, programa de manutenção ou encaminhamento a outro serviço.">
+          <defs>
+            <marker id="ah-flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+              <path class="ah-flow" d="M0 0 L10 5 L0 10 Z"/>
+            </marker>
+            <marker id="ah-loop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+              <path class="ah-loop" d="M0 0 L10 5 L0 10 Z"/>
+            </marker>
+          </defs>
+
+          <!-- Faixas -->
+          <rect class="band" x="0" y="0" width="760" height="244" rx="16"/>
+          <text class="t-band" x="20" y="27">1 · CHEGADA</text>
+          <text class="t-hint" x="740" y="27" text-anchor="end">de onde o paciente vem</text>
+          <text class="t-band" x="20" y="272">2 · PERCURSO</text>
+          <text class="t-hint" x="740" y="272" text-anchor="end">por onde ele passa</text>
+          <rect class="band" x="0" y="1196" width="760" height="164" rx="16"/>
+          <text class="t-band" x="20" y="1222">3 · SAÍDA</text>
+          <text class="t-hint" x="740" y="1222" text-anchor="end">onde ele sai</text>
+
+          <!-- Fluxo principal -->
+          <path class="flow" d="M200 194 V226 H380"/>
+          <path class="flow" d="M560 194 V226 H380"/>
+          <path class="flow" d="M380 226 V288" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M380 344 V370" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M272 418 H150" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M488 418 H560" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M380 466 V502" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M650 444 V530 H520" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M240 518 H150" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M380 558 V600" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M380 656 V698" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M380 754 V796" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M380 944 V986" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M380 1042 V1068" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M264 1118 H100 V1264" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M380 1168 V1264" marker-end="url(#ah-flow)"/>
+          <path class="flow" d="M380 1232 H630 V1264" marker-end="url(#ah-flow)"/>
+
+          <!-- Ciclos de retorno -->
+          <path class="loop" d="M150 542 H240" marker-end="url(#ah-loop)"/>
+          <path class="loop" d="M240 1014 H196 V628 H240" marker-end="url(#ah-loop)"/>
+          <path class="loop" d="M496 1118 H665 V726 H520" marker-end="url(#ah-loop)"/>
+          <path class="loop" d="M496 1118 H575 V870 H536" marker-end="url(#ah-loop)"/>
+
+          <!-- Rótulos das setas -->
+          <text class="t-label" x="212" y="216">encaminhamento ou regulação</text>
+          <text class="t-label" x="548" y="216" text-anchor="end">pedido médico ou guia</text>
+          <text class="t-label" x="211" y="409" text-anchor="middle">outro perfil</text>
+          <text class="t-label" x="524" y="409" text-anchor="middle">sem vaga</text>
+          <text class="t-label" x="390" y="489">sim</text>
+          <text class="t-label" x="660" y="492">vaga liberada</text>
+          <text class="t-label" x="195" y="509" text-anchor="middle">risco agudo</text>
+          <text class="t-label t-loop" x="195" y="560" text-anchor="middle">estabilizado</text>
+          <text class="t-label" x="390" y="583">prioridade e especialidades</text>
+          <text class="t-label" x="390" y="681">linha de base</text>
+          <text class="t-label" x="390" y="779">agenda personalizada</text>
+          <text class="t-label" x="390" y="969">dados de sessões e sensores</text>
+          <text class="t-label" x="182" y="1109" text-anchor="middle">outro serviço</text>
+          <text class="t-label" x="390" y="1253">metas atingidas</text>
+          <text class="t-label" x="640" y="1253">manter ganhos</text>
+
+          <!-- Contêiner das intervenções -->
+          <rect class="group" x="224" y="796" width="312" height="148" rx="14"/>
+          <text class="t-title" x="380" y="818" text-anchor="middle">Intervenções</text>
+
+          <!-- Chegada -->
+          <g class="n n-entry" data-id="publica" tabindex="0" role="button">
+            <rect class="shape" x="40" y="42" width="320" height="152" rx="14"/>
+            <text class="t-title" x="64" y="72">Rede pública</text>
+            <text class="t-sub" x="336" y="72" text-anchor="end">SUS</text>
+            <circle class="bullet" cx="68" cy="96" r="2.5"/><text class="t-item" x="78" y="100">UBS e ambulatórios do SUS</text>
+            <circle class="bullet" cx="68" cy="120" r="2.5"/><text class="t-item" x="78" y="124">Alta de hospitais públicos</text>
+            <circle class="bullet" cx="68" cy="144" r="2.5"/><text class="t-item" x="78" y="148">Central de regulação</text>
+            <circle class="bullet" cx="68" cy="168" r="2.5"/><text class="t-item" x="78" y="172">Centros de referência</text>
+          </g>
+          <g class="n n-entry" data-id="privada" tabindex="0" role="button">
+            <rect class="shape" x="400" y="42" width="320" height="152" rx="14"/>
+            <text class="t-title" x="424" y="72">Rede privada</text>
+            <text class="t-sub" x="696" y="72" text-anchor="end">convênio ou particular</text>
+            <circle class="bullet" cx="428" cy="96" r="2.5"/><text class="t-item" x="438" y="100">Médico assistente e consultórios</text>
+            <circle class="bullet" cx="428" cy="120" r="2.5"/><text class="t-item" x="438" y="124">Hospitais e clínicas parceiras</text>
+            <circle class="bullet" cx="428" cy="144" r="2.5"/><text class="t-item" x="438" y="148">Convênios e operadoras</text>
+            <circle class="bullet" cx="428" cy="168" r="2.5"/><text class="t-item" x="438" y="172">Atendimento particular</text>
+          </g>
+
+          <!-- Percurso -->
+          <g class="n n-step" data-id="acolhimento" tabindex="0" role="button">
+            <rect class="shape" x="240" y="288" width="280" height="56" rx="10"/>
+            <text class="t-title" x="380" y="312" text-anchor="middle">Acolhimento e cadastro</text>
+            <text class="t-sub" x="380" y="331" text-anchor="middle">porta única para as duas redes</text>
+          </g>
+          <g class="n n-decide" data-id="elegibilidade" tabindex="0" role="button">
+            <path class="shape" d="M380 370 L488 418 L380 466 L272 418 Z"/>
+            <text class="t-dec" x="380" y="414" text-anchor="middle">Perfil e vaga</text>
+            <text class="t-dec" x="380" y="432" text-anchor="middle">no serviço?</text>
+          </g>
+          <g class="n n-exit" data-id="outro-servico" tabindex="0" role="button">
+            <rect class="shape" x="20" y="392" width="130" height="52" rx="26"/>
+            <text class="t-dec" x="85" y="414" text-anchor="middle">Outro serviço</text>
+            <text class="t-sub" x="85" y="431" text-anchor="middle">encaminhamento</text>
+          </g>
+          <g class="n n-step" data-id="espera" tabindex="0" role="button">
+            <rect class="shape" x="560" y="392" width="180" height="52" rx="10"/>
+            <text class="t-dec" x="650" y="414" text-anchor="middle">Lista de espera</text>
+            <text class="t-sub" x="650" y="431" text-anchor="middle">orientação e prioridade</text>
+          </g>
+          <g class="n n-step" data-id="triagem" tabindex="0" role="button">
+            <rect class="shape" x="240" y="502" width="280" height="56" rx="10"/>
+            <text class="t-title" x="380" y="526" text-anchor="middle">Triagem e avaliação inicial</text>
+            <text class="t-sub" x="380" y="545" text-anchor="middle">nível neurológico, dor e riscos</text>
+          </g>
+          <g class="n n-urgent" data-id="urgencia" tabindex="0" role="button">
+            <rect class="shape" x="20" y="504" width="130" height="52" rx="26"/>
+            <text class="t-dec" x="85" y="526" text-anchor="middle">Urgência</text>
+            <text class="t-sub" x="85" y="543" text-anchor="middle">pronto-atendimento</text>
+          </g>
+          <g class="n n-step" data-id="exames" tabindex="0" role="button">
+            <rect class="shape" x="240" y="600" width="280" height="56" rx="10"/>
+            <text class="t-title" x="380" y="624" text-anchor="middle">Exames e avaliações</text>
+            <text class="t-sub" x="380" y="643" text-anchor="middle">conforme indicação clínica</text>
+          </g>
+          <g class="n n-step" data-id="plano" tabindex="0" role="button">
+            <rect class="shape" x="240" y="698" width="280" height="56" rx="10"/>
+            <text class="t-title" x="380" y="722" text-anchor="middle">Plano terapêutico e metas GAS</text>
+            <text class="t-sub" x="380" y="741" text-anchor="middle">equipe e paciente definem as metas</text>
+          </g>
+          <g class="n n-step" data-id="centro" tabindex="0" role="button">
+            <rect class="shape" x="236" y="830" width="138" height="104" rx="10"/>
+            <text class="t-dec" x="305" y="851" text-anchor="middle">No centro</text>
+            <text class="t-mini" x="305" y="871" text-anchor="middle">Fisioterapia</text>
+            <text class="t-mini" x="305" y="887" text-anchor="middle">FES e FES-Cycling</text>
+            <text class="t-mini" x="305" y="903" text-anchor="middle">Terapia ocupacional</text>
+            <text class="t-mini" x="305" y="919" text-anchor="middle">Dor e jogos sérios</text>
+          </g>
+          <g class="n n-step" data-id="casa" tabindex="0" role="button">
+            <rect class="shape" x="386" y="830" width="138" height="104" rx="10"/>
+            <text class="t-dec" x="455" y="851" text-anchor="middle">Em casa</text>
+            <text class="t-mini" x="455" y="871" text-anchor="middle">Telerreabilitação</text>
+            <text class="t-mini" x="455" y="887" text-anchor="middle">Tarefas domiciliares</text>
+            <text class="t-mini" x="455" y="903" text-anchor="middle">Sensores vestíveis</text>
+            <text class="t-mini" x="455" y="919" text-anchor="middle">Relato de sintomas</text>
+          </g>
+          <g class="n n-step" data-id="reavaliacao" tabindex="0" role="button">
+            <rect class="shape" x="240" y="986" width="280" height="56" rx="10"/>
+            <text class="t-title" x="380" y="1010" text-anchor="middle">Monitoramento e reavaliação</text>
+            <text class="t-sub" x="380" y="1029" text-anchor="middle">pontuação GAS × linha de base</text>
+          </g>
+          <g class="n n-loop" data-id="ciclo-exame" tabindex="0" role="button">
+            <rect class="shape" x="157" y="662" width="78" height="36" rx="10"/>
+            <text class="t-badge" x="196" y="677" text-anchor="middle">novo exame</text>
+            <text class="t-badge" x="196" y="691" text-anchor="middle">se indicado</text>
+          </g>
+          <g class="n n-decide" data-id="decisao" tabindex="0" role="button">
+            <path class="shape" d="M380 1068 L496 1118 L380 1168 L264 1118 Z"/>
+            <text class="t-dec" x="380" y="1113" text-anchor="middle">Decisão da equipe</text>
+            <text class="t-dec" x="380" y="1131" text-anchor="middle">com o paciente</text>
+          </g>
+          <g class="n n-loop" data-id="ciclo-continuar" tabindex="0" role="button">
+            <rect class="shape" x="541" y="988" width="68" height="24" rx="10"/>
+            <text class="t-badge" x="575" y="1004" text-anchor="middle">continuar</text>
+          </g>
+          <g class="n n-loop" data-id="ciclo-meta" tabindex="0" role="button">
+            <rect class="shape" x="621" y="880" width="88" height="36" rx="10"/>
+            <text class="t-badge" x="665" y="895" text-anchor="middle">nova meta ou</text>
+            <text class="t-badge" x="665" y="909" text-anchor="middle">redirecionar</text>
+          </g>
+
+          <!-- Saída -->
+          <g class="n n-exit" data-id="encaminhamento" tabindex="0" role="button">
+            <rect class="shape" x="24" y="1264" width="152" height="56" rx="28"/>
+            <text class="t-title" x="100" y="1288" text-anchor="middle">Encaminhamento</text>
+            <text class="t-sub" x="100" y="1305" text-anchor="middle">outro serviço ou nível</text>
+          </g>
+          <g class="n n-good" data-id="alta" tabindex="0" role="button">
+            <rect class="shape" x="290" y="1264" width="180" height="56" rx="28"/>
+            <text class="t-title" x="380" y="1288" text-anchor="middle">Alta do programa</text>
+            <text class="t-sub" x="380" y="1305" text-anchor="middle">metas e critérios cumpridos</text>
+          </g>
+          <g class="n n-good" data-id="manutencao" tabindex="0" role="button">
+            <rect class="shape" x="528" y="1264" width="204" height="56" rx="28"/>
+            <text class="t-title" x="630" y="1288" text-anchor="middle">Programa de manutenção</text>
+            <text class="t-sub" x="630" y="1305" text-anchor="middle">acompanhamento periódico</text>
+          </g>
+          <text class="t-note" x="100" y="1342" text-anchor="middle">com relatório e motivo</text>
+          <text class="t-note" x="380" y="1342" text-anchor="middle">relatório final e contrarreferência</text>
+          <text class="t-note" x="630" y="1342" text-anchor="middle">volta à reavaliação se piorar</text>
+        </svg>
+      </div>
+      <figcaption>As duas redes entram pela mesma porta de acolhimento. O percurso tem três ciclos de retorno, em tracejado, e termina em alta, manutenção ou encaminhamento. As saídas no meio do caminho aparecem à esquerda, na etapa em que acontecem.</figcaption>
+    </figure>
+
+    <aside class="panel" id="panel" aria-live="polite">
+      <section id="overview">
+        <h2>Como ler o fluxograma</h2>
+        <div class="zones">
+          <div class="zone">
+            <span class="zone-n">1</span>
+            <strong>Chegada</strong>
+            <p>Duas portas de entrada, rede pública e rede privada, que se juntam no mesmo acolhimento. Daí em diante o protocolo é igual para todos.</p>
+          </div>
+          <div class="zone">
+            <span class="zone-n">2</span>
+            <strong>Percurso</strong>
+            <p>Triagem, exames, plano com metas GAS, intervenções no centro e em casa, e reavaliação. As setas tracejadas são os ciclos de retorno: o plano muda conforme os resultados.</p>
+          </div>
+          <div class="zone">
+            <span class="zone-n">3</span>
+            <strong>Saída</strong>
+            <p>Alta, programa de manutenção ou encaminhamento a outro serviço. Também há saídas no meio do caminho: outro serviço logo na entrada, e urgência na triagem, de onde o paciente volta depois de estabilizado.</p>
+          </div>
+        </div>
+        <p class="stats">2 portas de entrada · 6 etapas · 3 ciclos de retorno · 3 saídas finais</p>
+        <p class="note">Toda etapa registra dados no prontuário eletrônico. A IA organiza e sugere; quem decide é a equipe, com o paciente.</p>
+        <p class="note">Fluxo demonstrativo para apresentação do projeto. Não é um protocolo clínico validado.</p>
+      </section>
+      <section id="detail" hidden></section>
+    </aside>
+  </main>
+</div>
+
+<script>
+(() => {
+  document.documentElement.lang = 'pt-BR';
+
+  const NODES = {
+    publica: {
+      kind: 'entry', tipo: 'Chegada', titulo: 'Rede pública',
+      resumo: 'O paciente chega encaminhado pelo SUS. A origem fica registrada, mas o atendimento segue o mesmo protocolo da rede privada.',
+      blocos: [
+        ['De onde vem', ['Unidades básicas e ambulatórios do SUS', 'Alta de hospitais públicos', 'Centros de referência em reabilitação', 'Central de regulação, quando ela intermedia o acesso']],
+        ['Traz consigo', ['Encaminhamento ou guia de referência', 'Resumo de alta e exames anteriores', 'Documento de identidade e Cartão SUS']]
+      ],
+      caminhos: [['acolhimento', 'Acolhimento e cadastro']]
+    },
+    privada: {
+      kind: 'entry', tipo: 'Chegada', titulo: 'Rede privada',
+      resumo: 'O paciente chega por indicação médica, por convênio ou por procura particular. Depois do acolhimento, segue o mesmo protocolo da rede pública.',
+      blocos: [
+        ['De onde vem', ['Médico assistente ou consultório', 'Hospitais e clínicas parceiras', 'Convênios e operadoras de saúde', 'Procura particular']],
+        ['Traz consigo', ['Pedido médico com a indicação', 'Relatórios e exames anteriores', 'Autorização do convênio, quando houver']]
+      ],
+      caminhos: [['acolhimento', 'Acolhimento e cadastro']]
+    },
+    acolhimento: {
+      kind: 'step', tipo: 'Etapa', titulo: 'Acolhimento e cadastro',
+      resumo: 'Porta única para as duas redes. A partir daqui, o protocolo é o mesmo para todos os pacientes.',
+      blocos: [
+        ['O que acontece', ['Cadastro inicial e registro da origem do encaminhamento', 'Conferência de documentos e exames trazidos', 'Orientação ao paciente e à família sobre o programa']],
+        ['Quem atua', ['Equipe de acolhimento', 'Enfermagem', 'Coordenação']],
+        ['Fica no prontuário', ['Ficha de cadastro, origem e documentos recebidos']]
+      ],
+      caminhos: [['elegibilidade', 'Perfil e vaga no serviço?']]
+    },
+    elegibilidade: {
+      kind: 'decide', tipo: 'Decisão', titulo: 'Perfil e vaga no serviço?',
+      resumo: 'Três perguntas separadas: o perfil clínico se beneficia deste serviço? Há vaga agora? Outro nível de cuidado atende melhor?',
+      blocos: [
+        ['Quem decide', ['Médico responsável pela admissão', 'Coordenação do serviço']],
+        ['Regra importante', ['Falta de vaga não torna o paciente inelegível. Ele vai para a lista de espera com prioridade registrada.']]
+      ],
+      caminhos: [['triagem', 'Sim: segue para a triagem'], ['espera', 'Sem vaga: lista de espera'], ['outro-servico', 'Outro perfil: encaminhamento']]
+    },
+    espera: {
+      kind: 'step', tipo: 'Etapa', titulo: 'Lista de espera',
+      resumo: 'Paciente elegível aguardando vaga. Recebe orientações e tem a prioridade registrada.',
+      blocos: [
+        ['O que acontece', ['Orientações iniciais para casa', 'Prioridade definida por critério clínico', 'Contato quando a vaga for liberada']],
+        ['Indicador acompanhado', ['Tempo entre o encaminhamento e a avaliação inicial']]
+      ],
+      caminhos: [['triagem', 'Vaga liberada: triagem']]
+    },
+    'outro-servico': {
+      kind: 'exit', tipo: 'Saída antecipada', titulo: 'Encaminhamento a outro serviço',
+      resumo: 'Quando o perfil do paciente pede outro nível de cuidado, como internação ou um serviço com recurso específico, ele é encaminhado já na entrada.',
+      blocos: [
+        ['Vai com', ['Relatório com o motivo do encaminhamento', 'Os dados reunidos no cadastro']]
+      ],
+      caminhos: []
+    },
+    triagem: {
+      kind: 'step', tipo: 'Etapa', titulo: 'Triagem e avaliação inicial',
+      resumo: 'Avaliação clínica estruturada que define a prioridade e quais especialidades precisam ver o paciente.',
+      blocos: [
+        ['O que é avaliado', ['História da lesão: causa e tempo desde a lesão', 'Nível neurológico e gravidade (ISNCSCI/AIS, por profissional habilitado)', 'Dor, espasticidade, sensibilidade e força', 'Limitações funcionais e tecnologia assistiva', 'Objetivos do paciente e contexto familiar e social']],
+        ['Riscos rastreados', ['Disreflexia autonômica', 'Hipotensão ortostática', 'Lesão por pressão', 'Tromboembolismo, fraturas e infecções']],
+        ['Quem atua', ['Fisiatra e neurologista', 'Fisioterapeuta e terapeuta ocupacional', 'Enfermagem']],
+        ['Papel da IA', ['Sinaliza riscos e dados ausentes. Não diagnostica e não autoriza tratamento.']]
+      ],
+      caminhos: [['exames', 'Segue para exames e avaliações'], ['urgencia', 'Risco agudo: urgência']]
+    },
+    urgencia: {
+      kind: 'urgent', tipo: 'Saída temporária', titulo: 'Atendimento de urgência',
+      resumo: 'Se a triagem encontra um risco agudo, o paciente sai do fluxo e vai para atendimento de urgência. Depois de estabilizado, volta para a triagem.',
+      blocos: [
+        ['Exemplos', ['Suspeita de disreflexia autonômica', 'Sinais de tromboembolismo', 'Infecção ou fratura']],
+        ['Fica no prontuário', ['O evento, a conduta tomada e a data de retorno']]
+      ],
+      caminhos: [['triagem', 'Estabilizado: volta à triagem']]
+    },
+    exames: {
+      kind: 'step', tipo: 'Etapa', titulo: 'Exames e avaliações',
+      resumo: 'Pedidos conforme a indicação clínica de cada paciente. Nenhum exame é obrigatório para todos. Os resultados formam a linha de base.',
+      blocos: [
+        ['Biblioteca disponível', ['Neurofisiologia: eletroneuromiografia, condução nervosa, potenciais evocados', 'Sono: questionários e polissonografia, se indicada', 'Biomecânica: amplitude de movimento, postura, sensores inerciais, EMG de superfície', 'Dor: intensidade, componente neuropático, impacto no sono e nas atividades', 'Função: SCIM, espasticidade, força, qualidade de vida']],
+        ['Quem atua', ['Neurologia e neurofisiologia', 'Fisioterapia e biomecânica', 'Engenharia biomédica, nos sensores']],
+        ['Fica no prontuário', ['Resultados integrados e comparáveis entre avaliações']]
+      ],
+      caminhos: [['plano', 'Linha de base para o plano']]
+    },
+    plano: {
+      kind: 'step', tipo: 'Etapa', titulo: 'Plano terapêutico e metas GAS',
+      resumo: 'Equipe e paciente constroem as metas juntos, a partir das capacidades, das limitações e das prioridades dele.',
+      blocos: [
+        ['Cada meta tem', ['Situação basal e indicador objetivo', 'Cinco níveis definidos antes de começar: −2, −1, 0, +1, +2', 'Prazo, responsável e intervenções ligadas a ela']],
+        ['Exemplos de meta', ['Menos interferência da dor nas atividades', 'Mais independência nas transferências', 'Melhor controle de tronco']],
+        ['Papel da IA', ['Pode sugerir metas a partir dos dados. Profissional e paciente aprovam.']]
+      ],
+      caminhos: [['centro', 'Intervenções no centro'], ['casa', 'Atividades em casa']]
+    },
+    centro: {
+      kind: 'step', tipo: 'Intervenção', titulo: 'Intervenções no centro',
+      resumo: 'Sessões presenciais marcadas na agenda semanal do paciente. Frequência e duração dependem da prescrição, da tolerância e dos objetivos.',
+      blocos: [
+        ['Pode incluir', ['Fisioterapia neurofuncional: tronco, equilíbrio, transferências e marcha quando possível', 'FES e FES-Cycling, quando indicados e com avaliação de segurança', 'Terapia ocupacional', 'Tratamento da dor e psicologia, quando indicados', 'Jogos sérios e biofeedback']],
+        ['Fica no prontuário', ['Presença, desempenho em cada sessão e intercorrências']]
+      ],
+      caminhos: [['reavaliacao', 'Dados seguem para a reavaliação']]
+    },
+    casa: {
+      kind: 'step', tipo: 'Intervenção', titulo: 'Atividades em casa',
+      resumo: 'Telerreabilitação nos dias sem sessão presencial, acompanhada a distância pela equipe.',
+      blocos: [
+        ['Pode incluir', ['Tarefas domiciliares com orientação em vídeo', 'Teleconsultas com profissionais habilitados', 'Sensores vestíveis registrando os exercícios', 'Registro de dor, fadiga e sono pelo próprio paciente']],
+        ['Gamificação', ['Missões semanais que valorizam adesão, esforço e segurança, sem ranking entre pacientes']],
+        ['Fica no prontuário', ['Adesão, sintomas relatados e dados dos dispositivos']]
+      ],
+      caminhos: [['reavaliacao', 'Dados seguem para a reavaliação']]
+    },
+    reavaliacao: {
+      kind: 'step', tipo: 'Etapa', titulo: 'Monitoramento e reavaliação',
+      resumo: 'Os dados acumulados são comparados com a linha de base, e cada meta recebe sua pontuação GAS com a evidência usada.',
+      blocos: [
+        ['Quando acontece', ['Nas datas programadas no plano', 'Antes, se surgir um alerta: piora da dor, queda na adesão, intercorrência']],
+        ['Quem atua', ['Equipe multidisciplinar', 'A IA organiza comparações e tendências para a equipe revisar']]
+      ],
+      caminhos: [['decisao', 'Decisão da equipe com o paciente'], ['ciclo-exame', 'Novo exame, se indicado']]
+    },
+    'ciclo-exame': {
+      kind: 'loop', tipo: 'Ciclo de retorno', titulo: 'Novo exame, se indicado',
+      resumo: 'A reavaliação pode pedir um exame novo ou a repetição de um anterior. O resultado volta para o prontuário e é comparado com os anteriores.',
+      blocos: [
+        ['Exemplo', ['Mudança no padrão da dor leva a uma nova avaliação neurofisiológica.']]
+      ],
+      caminhos: [['exames', 'Volta a exames e avaliações']]
+    },
+    decisao: {
+      kind: 'decide', tipo: 'Decisão', titulo: 'Decisão da equipe com o paciente',
+      resumo: 'Com a reavaliação em mãos, a equipe decide com o paciente o próximo passo. O sistema não supõe que todos vão melhorar: manter a função, não responder ou ter uma intercorrência também são resultados registrados.',
+      blocos: [
+        ['Quem decide', ['O profissional responsável, com a equipe e o paciente']]
+      ],
+      caminhos: [['ciclo-continuar', 'Continuar o programa'], ['ciclo-meta', 'Nova meta ou mudança de estratégia'], ['alta', 'Alta do programa'], ['manutencao', 'Programa de manutenção'], ['encaminhamento', 'Encaminhamento a outro serviço']]
+    },
+    'ciclo-continuar': {
+      kind: 'loop', tipo: 'Ciclo de retorno', titulo: 'Continuar o programa',
+      resumo: 'As metas estão em andamento e o plano está funcionando. O paciente segue com as mesmas intervenções até a próxima reavaliação.',
+      blocos: [],
+      caminhos: [['centro', 'Volta às intervenções no centro'], ['casa', 'Volta às atividades em casa']]
+    },
+    'ciclo-meta': {
+      kind: 'loop', tipo: 'Ciclo de retorno', titulo: 'Nova meta ou redirecionamento',
+      resumo: 'Se a meta foi atingida, a equipe define a próxima. Se não houve resposta, muda a estratégia. Nos dois casos o plano é revisto com o paciente.',
+      blocos: [
+        ['Exemplo', ['A meta de transferência foi atingida em +1, e a equipe define uma nova meta de independência maior.']]
+      ],
+      caminhos: [['plano', 'Volta ao plano terapêutico']]
+    },
+    alta: {
+      kind: 'good', tipo: 'Saída', titulo: 'Alta do programa',
+      resumo: 'Metas e critérios clínicos cumpridos.',
+      blocos: [
+        ['Ao sair, o paciente leva', ['Relatório final comparando o estado inicial com o resultado observado, com limitações e dados ausentes', 'Orientações para casa', 'Contrarreferência para a unidade ou o médico de origem']]
+      ],
+      caminhos: []
+    },
+    manutencao: {
+      kind: 'good', tipo: 'Saída', titulo: 'Programa de manutenção',
+      resumo: 'Os ganhos precisam ser preservados, com menos frequência de atendimento.',
+      blocos: [
+        ['Como funciona', ['Acompanhamento periódico e telemonitoramento', 'Tarefas domiciliares', 'Se houver piora, o paciente volta para a reavaliação']]
+      ],
+      caminhos: [['reavaliacao', 'Piora: volta à reavaliação']]
+    },
+    encaminhamento: {
+      kind: 'exit', tipo: 'Saída', titulo: 'Encaminhamento a outro serviço',
+      resumo: 'Outro serviço ou nível de cuidado atende melhor o objetivo atual do paciente.',
+      blocos: [
+        ['Vai com', ['Relatório com o histórico e o motivo do encaminhamento']]
+      ],
+      caminhos: []
+    }
+  };
+
+  const svg = document.getElementById('flow');
+  const panel = document.getElementById('panel');
+  const detail = document.getElementById('detail');
+  const narrow = window.matchMedia('(max-width: 920px)');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const nodeEls = {};
+  let current = null;
+
+  svg.querySelectorAll('.n').forEach((el) => {
+    const id = el.dataset.id;
+    nodeEls[id] = el;
+    el.setAttribute('aria-label', NODES[id].titulo + ': ver detalhes');
+  });
+
+  function render(id) {
+    const n = NODES[id];
+    const blocks = n.blocos
+      .map(([h, items]) => `<h3>${h}</h3><ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul>`)
+      .join('');
+    const paths = n.caminhos.length
+      ? `<h3>Para onde vai</h3><div class="paths">${n.caminhos
+          .map(([to, label]) => `<button type="button" data-go="${to}"><span class="dot k-${NODES[to].kind}"></span>${label}</button>`)
+          .join('')}</div>`
+      : `<p class="end">Aqui o paciente deixa o programa.</p>`;
+    detail.innerHTML =
+      `<div class="d-head"><span class="chip"><span class="dot k-${n.kind}"></span>${n.tipo}</span>` +
+      `<button type="button" class="back" data-back><span class="only-wide">Visão geral</span><span class="only-narrow">Fechar</span></button></div>` +
+      `<h2 id="detail-title" tabindex="-1">${n.titulo}</h2><p class="lead">${n.resumo}</p>${blocks}${paths}`;
+  }
+
+  function select(id, opts = {}) {
+    if (!NODES[id]) return;
+    if (current) nodeEls[current].classList.remove('is-active');
+    current = id;
+    nodeEls[id].classList.add('is-active');
+    render(id);
+    detail.hidden = false;
+    panel.classList.add('is-detail');
+    panel.scrollTop = 0;
+    detail.scrollTop = 0;
+    if (opts.scroll) {
+      nodeEls[id].scrollIntoView({
+        block: narrow.matches ? 'start' : 'center',
+        inline: 'center',
+        behavior: reduce.matches ? 'auto' : 'smooth'
+      });
+    }
+    if (opts.focusPanel) document.getElementById('detail-title').focus({ preventScroll: true });
+  }
+
+  function clear() {
+    if (!current) return;
+    const el = nodeEls[current];
+    el.classList.remove('is-active');
+    current = null;
+    detail.hidden = true;
+    detail.innerHTML = '';
+    panel.classList.remove('is-detail');
+    el.focus({ preventScroll: true });
+  }
+
+  svg.addEventListener('click', (e) => {
+    const el = e.target.closest('.n');
+    if (el) select(el.dataset.id);
+  });
+  svg.addEventListener('keydown', (e) => {
+    const el = e.target.closest('.n');
+    if (!el) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      select(el.dataset.id);
+    }
+  });
+  detail.addEventListener('click', (e) => {
+    const go = e.target.closest('[data-go]');
+    if (go) {
+      select(go.dataset.go, { scroll: true, focusPanel: true });
+      return;
+    }
+    if (e.target.closest('[data-back]')) clear();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') clear();
+  });
+})();
+</script>
+
+</body>
+</html>

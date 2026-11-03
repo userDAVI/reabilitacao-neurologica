@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Centro de Reabilitação Neurológica Inteligente</title>
+    <meta
+      name="description"
+      content="Prototipo demonstrativo de plataforma inteligente de reabilitação para lesão medular."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">R</div>
+          <div>
+            <p class="eyebrow">Rehab</p>
+            <h1>Neuro</h1>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Navegação principal">
+          <button class="nav-item active" data-target="overview">Visão geral</button>
+          <button class="nav-item" data-target="dashboard">Painel de gestão</button>
+          <button class="nav-item" data-target="patients">Lista de pacientes</button>
+          <button class="nav-item" data-target="emr">Prontuário</button>
+          <button class="nav-item" data-target="ai">IA clínica</button>
+          <button class="nav-item" data-target="exams">Exames</button>
+          <button class="nav-item" data-target="therapy">Plano terapêutico</button>
+          <button class="nav-item" data-target="agenda">Agenda</button>
+          <button class="nav-item" data-target="gamification">Gamificação</button>
+          <button class="nav-item" data-target="tele">Telereabilitação</button>
+          <button class="nav-item" data-target="tech">Tecnologias</button>
+          <button class="nav-item" data-target="outcomes">Resultados</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <span class="status-dot"></span>
+          <span>Protótipo institucional</span>
+        </div>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Plataforma inteligente</p>
+            <h2>Centro de reabilitação neurológica</h2>
+          </div>
+          <div class="user-pill">
+            <span class="avatar">DR</span>
+            <div>
+              <strong>Dra. Renata Costa</strong>
+              <small>Coordenação clínica</small>
+            </div>
+          </div>
+        </header>
+
+        <section id="overview" class="panel active-panel">
+          <div class="hero">
+            <div>
+              <p class="eyebrow accent">Jornada longitudinal e multidisciplinar</p>
+              <h3>Ecossistema inteligente para pacientes com lesão medular</h3>
+              <p>
+                Sistema de acompanhamento clínico, funcional e tecnológico, com avaliação inicial,
+                monitoramento, metas GAS, tecnologia assistiva, IA de apoio à decisão e ciclos de
+                realimentação contínua.
+              </p>
+            </div>
+            <div class="hero-badges">
+              <span>Rede pública</span>
+              <span>Rede privada</span>
+              <span>Telereabilitação</span>
+            </div>
+          </div>
+
+          <div class="overview-grid">
+            <div class="panel-card large">
+              <div class="section-header">
+                <h4>Mapa da jornada do paciente</h4>
+                <span class="chip neutral">Fluxo integrado</span>
+              </div>
+              <div id="flow-diagram" class="flow-diagram" aria-label="Diagrama da jornada"></div>
+            </div>
+
+            <div class="panel-card detail-panel">
+              <div class="section-header">
+                <h4>Detalhe da etapa</h4>
+              </div>
+              <div id="stage-detail" class="stage-detail"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="dashboard" class="panel">
+          <div class="section-header">
+            <h3>Painel de gestão</h3>
+            <span class="chip success">Indicadores de operação</span>
+          </div>
+
+          <div class="metrics-grid" id="metrics-grid"></div>
+
+          <div class="dashboard-grid">
+            <div class="panel-card">
+              <div class="section-header">
+                <h4>Pacientes por origem</h4>
+              </div>
+              <div class="donut-wrap">
+                <div class="donut-chart" style="--segment1: 58%; --segment2: 42%;"></div>
+                <div class="legend-list">
+                  <div><span class="dot blue"></span> Rede pública 58%</div>
+                  <div><span class="dot green"></span> Rede privada 42%</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="section-header">
+                <h4>Progressão de metas GAS</h4>
+              </div>
+              <div class="bars-chart" id="gas-chart"></div>
+            </div>
+
+            <div class="panel-card wide">
+              <div class="section-header">
+                <h4>Distribuição por etapa</h4>
+              </div>
+              <div class="stage-bars" id="stage-distribution"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="patients" class="panel">
+          <div class="section-header">
+            <h3>Lista de pacientes</h3>
+            <span class="chip neutral">Base fictícia</span>
+          </div>
+
+          <div class="toolbar">
+            <input id="patient-search" type="search" placeholder="Pesquisar por nome ou etapa" />
+            <select id="patient-filter">
+              <option value="all">Todos</option>
+              <option value="triagem">Triagem</option>
+              <option value="reabilitacao">Reabilitação</option>
+              <option value="monitoramento">Monitoramento</option>
+              <option value="alta">Alta</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Paciente</th>
+                  <th>Origem</th>
+                  <th>Lesão</th>
+                  <th>Etapa</th>
+                  <th>GAS</th>
+                  <th>Responsável</th>
+                </tr>
+              </thead>
+              <tbody id="patient-table"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="emr" class="panel">
+          <div class="section-header">
+            <h3>Prontuário eletrônico</h3>
+            <span class="chip neutral">Longitudinal</span>
+          </div>
+
+          <div class="emr-layout">
+            <div class="panel-card">
+              <div class="patient-header">
+                <div class="patient-avatar">AL</div>
+                <div>
+                  <h4>Ana Lins</h4>
+                  <p>Lesão medular incompleta, T10, 18 meses</p>
+                </div>
+              </div>
+
+              <div class="emr-info-grid">
+                <div>
+                  <label>Diagnóstico</label>
+                  <p>Paraplegia espástica incompleta</p>
+                </div>
+                <div>
+                  <label>Nível</label>
+                  <p>T10</p>
+                </div>
+                <div>
+                  <label>ISNCSCI</label>
+                  <p>AIS C</p>
+                </div>
+                <div>
+                  <label>Objetivos</label>
+                  <p>Mobilidade, transferências, dor</p>
+                </div>
+              </div>
+
+              <div class="timeline-block">
+                <h5>Histórico clínico</h5>
+                <ul>
+                  <li><strong>Jun/2025:</strong> Avaliação inicial com dor neuropática e limitação em transferências.</li>
+                  <li><strong>Ago/2025:</strong> Início de FES-cycling e fisioterapia neurofuncional.</li>
+                  <li><strong>Set/2025:</strong> Redução de dor e melhora de controle de tronco.</li>
+                  <li><strong>Out/2025:</strong> Reavaliação com ganho de resistência funcional.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="section-header">
+                <h4>Documentos e avaliações</h4>
+              </div>
+              <div class="file-list">
+                <div class="file-item"><span>📄</span> Anamnese inicial</div>
+                <div class="file-item"><span>📄</span> Avaliação funcional SCIM</div>
+                <div class="file-item"><span>📄</span> Relato de dor neuropática</div>
+                <div class="file-item"><span>📄</span> Exame biomecânico</div>
+                <div class="file-item"><span>📄</span> Registro de FES-Cycling</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="ai" class="panel">
+          <div class="section-header">
+            <h3>IA clínica</h3>
+            <span class="chip warning">Apoio à decisão com supervisão</span>
+          </div>
+
+          <div class="ai-grid">
+            <div class="panel-card">
+              <h4>Resumo clínico</h4>
+              <p>
+                Paciente com evolução estável em dor, melhora progressiva no controle de tronco e
+                resistência funcional. Necessita revisão de metas em transferências e atividade em casa.
+              </p>
+            </div>
+            <div class="panel-card">
+              <h4>Dados ausentes</h4>
+              <ul>
+                <li>Qualidade do sono e fadiga nas últimas 2 semanas</li>
+                <li>Registro de episódios de espasticidade noturna</li>
+                <li>Comparativo de mobilidade domiciliar com sensores</li>
+              </ul>
+            </div>
+            <div class="panel-card">
+              <h4>Tendências observadas</h4>
+              <ul>
+                <li>Redução de 26% na dor neuropática</li>
+                <li>Maior adesão à rotina domiciliar</li>
+                <li>Melhoria em transferência lateral</li>
+              </ul>
+            </div>
+            <div class="panel-card">
+              <h4>Sugestões demonstrativas</h4>
+              <ul>
+                <li>Repetir avaliação de dor e qualidade de vida em 3 semanas.</li>
+                <li>Propor objetivo de independência em transferências.</li>
+                <li>Considerar revisão de frequência de sessões domiciliares.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="exams" class="panel">
+          <div class="section-header">
+            <h3>Exames e avaliações</h3>
+            <span class="chip neutral">Comparação longitudinal</span>
+          </div>
+
+          <div class="exam-grid">
+            <div class="panel-card">
+              <h4>Resultados por foco</h4>
+              <div class="radar-wrap">
+                <div class="radar-chart">
+                  <span class="radar-circle c1"></span>
+                  <span class="radar-circle c2"></span>
+                  <span class="radar-circle c3"></span>
+                </div>
+              </div>
+            </div>
+            <div class="panel-card">
+              <h4>Exames realizados</h4>
+              <ul class="check-list">
+                <li>Eletroneuromiografia: concluída</li>
+                <li>Questionário de dor: atualizado</li>
+                <li>SCIM: reavaliação pendente</li>
+                <li>Bioimpedância e composição corporal: agendado</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="therapy" class="panel">
+          <div class="section-header">
+            <h3>Plano terapêutico</h3>
+            <span class="chip success">GAS e objetivos funcionais</span>
+          </div>
+
+          <div class="therapy-grid" id="therapy-goals"></div>
+
+          <div class="panel-card form-card">
+            <div class="section-header narrow">
+              <h4>Simular revisão de meta</h4>
+            </div>
+            <form id="goal-form">
+              <div class="form-grid">
+                <label>
+                  Meta
+                  <input type="text" id="goal-name" value="Maior independência em transferências" />
+                </label>
+                <label>
+                  Prazo
+                  <input type="text" id="goal-deadline" value="6 semanas" />
+                </label>
+                <label>
+                  Responsável
+                  <input type="text" id="goal-owner" value="Fisioterapia + terapia ocupacional" />
+                </label>
+                <label>
+                  Estado atual
+                  <input type="text" id="goal-status" value="-1: abaixo do esperado" />
+                </label>
+              </div>
+              <button type="submit" class="primary-btn">Salvar simulação</button>
+            </form>
+          </div>
+        </section>
+
+        <section id="agenda" class="panel">
+          <div class="section-header">
+            <h3>Agenda semanal</h3>
+            <span class="chip neutral">Programação</span>
+          </div>
+          <div class="calendar" id="calendar"></div>
+        </section>
+
+        <section id="gamification" class="panel">
+          <div class="section-header">
+            <h3>Gamificação</h3>
+            <span class="chip success">Engajamento individual</span>
+          </div>
+
+          <div class="gamification-grid">
+            <div class="panel-card large">
+              <h4>Missões da semana</h4>
+              <div class="mission-list">
+                <div class="mission"><span>Transferência lateral</span><strong>72%</strong></div>
+                <div class="mission"><span>Controle de tronco</span><strong>84%</strong></div>
+                <div class="mission"><span>Exercícios domiciliares</span><strong>91%</strong></div>
+              </div>
+            </div>
+            <div class="panel-card">
+              <h4>Conquistas</h4>
+              <ul class="check-list">
+                <li>3 sessões consecutivas concluídas</li>
+                <li>Progresso em dor e mobilidade</li>
+                <li>Adesão ao plano domiciliar</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="tele" class="panel">
+          <div class="section-header">
+            <h3>Telereabilitação</h3>
+            <span class="chip neutral">Acompanhamento remoto</span>
+          </div>
+
+          <div class="tele-grid">
+            <div class="panel-card">
+              <h4>Relatos de sintomas</h4>
+              <ul>
+                <li> Dor neuropática: leve</li>
+                <li> Espasticidade: moderada</li>
+                <li> Sono: irregular</li>
+                <li> Dor em transferência: baixa</li>
+              </ul>
+            </div>
+            <div class="panel-card">
+              <h4>Tarefas domiciliares</h4>
+              <ul>
+                <li>Exercícios de mobilidade: 5x/semana</li>
+                <li>Alongamento pós-sessão: 4x/semana</li>
+                <li>Registro de sintomas em app</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="tech" class="panel">
+          <div class="section-header">
+            <h3>Tecnologias e pesquisa</h3>
+            <span class="chip neutral">Roadmap inovador</span>
+          </div>
+          <div class="tech-grid" id="tech-grid"></div>
+        </section>
+
+        <section id="outcomes" class="panel">
+          <div class="section-header">
+            <h3>Resultados e alta</h3>
+            <span class="chip warning">Comparação longitudinal</span>
+          </div>
+
+          <div class="outcomes-grid">
+            <div class="panel-card">
+              <h4>Linha de base vs atual</h4>
+              <div class="outcome-list">
+                <div><span>Mobilidade</span><strong>+18%</strong></div>
+                <div><span>Controle postural</span><strong>+12%</strong></div>
+                <div><span>Dor</span><strong>-26%</strong></div>
+                <div><span>Adesão</span><strong>+21%</strong></div>
+              </div>
+            </div>
+            <div class="panel-card">
+              <h4>Saída possível</h4>
+              <ul>
+                <li>Continuidade do programa</li>
+                <li>Transição para manutenção</li>
+                <li>Encaminhamento para reavaliação especializada</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
